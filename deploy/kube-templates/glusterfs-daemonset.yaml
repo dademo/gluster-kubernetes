@@ -1,14 +1,17 @@
 ---
 kind: DaemonSet
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 metadata:
   name: glusterfs
   labels:
-    glusterfs: daemonset
+    glusterfs: pod
   annotations:
     description: GlusterFS DaemonSet
     tags: glusterfs
 spec:
+  selector:
+    matchLabels:
+      glusterfs: pod
   template:
     metadata:
       name: glusterfs
@@ -19,6 +22,7 @@ spec:
       nodeSelector:
         storagenode: glusterfs
       hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
       containers:
       - image: gluster/gluster-centos:latest
         imagePullPolicy: IfNotPresent
