@@ -39,6 +39,17 @@ spec:
         deploy-heketi: pod
     spec:
       serviceAccountName: heketi-service-account
+      hostNetwork: true
+      hostAliases:
+        - ip: '172.18.0.1'
+          hostnames:
+            - 'kubernetes-controller.localdomain'
+        - ip: '172.18.0.101'
+          hostnames:
+            - 'kubernetes-worker1.localdomain'
+        - ip: '172.18.0.102'
+          hostnames:
+            - 'kubernetes-worker2.localdomain'
       containers:
       - image: heketi/heketi:dev
         imagePullPolicy: IfNotPresent
