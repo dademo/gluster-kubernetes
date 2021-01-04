@@ -3,6 +3,7 @@ kind: DaemonSet
 apiVersion: apps/v1
 metadata:
   name: glusterfs
+  namespace: app-system
   labels:
     glusterfs: pod
   annotations:
@@ -15,6 +16,7 @@ spec:
   template:
     metadata:
       name: glusterfs
+      namespace: app-system
       labels:
         glusterfs: pod
         glusterfs-node: pod

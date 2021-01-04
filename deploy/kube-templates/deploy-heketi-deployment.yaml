@@ -3,6 +3,7 @@ kind: Service
 apiVersion: v1
 metadata:
   name: deploy-heketi
+  namespace: app-system
   labels:
     glusterfs: heketi-service
     deploy-heketi: service
@@ -20,6 +21,7 @@ kind: Deployment
 apiVersion: apps/v1
 metadata:
   name: deploy-heketi
+  namespace: app-system
   labels:
     glusterfs: heketi-pod
     deploy-heketi: pod
@@ -34,6 +36,7 @@ spec:
   template:
     metadata:
       name: deploy-heketi
+      namespace: app-system
       labels:
         glusterfs: heketi-pod
         deploy-heketi: pod
